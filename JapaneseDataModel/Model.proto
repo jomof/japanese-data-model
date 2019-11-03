@@ -1,0 +1,95 @@
+﻿syntax = "proto3";
+
+enum ResponseType {
+	UNHANDLED = 0;
+	JAPANESE_MECAB_TOKENIZE = 1;
+	JAPANESE_JACY_PARSE = 2;
+}
+
+// The result of invoking a process
+message ProcessResult {
+	string command = 1;
+	string arguments = 2;
+	int32 exitCode = 3;
+	bool timeout = 4;
+	string stdout = 5;
+	string stderr = 6;
+	// stdout and stderr interleved as they occured
+	string interlevedOutput = 7;
+}
+
+enum PartOfSpeech {
+	PART_OF_SPEECH_UNKNOWN = 0;
+	PART_OF_SPEECH_PENDING = 110;
+	PART_OF_SPEECH_NOUN = 1;
+	PART_OF_SPEECH_PREFIX = 2;
+	PART_OF_SPEECH_VERB = 3;
+	PART_OF_SPEECH_AUXILIARY_VERB = 4;
+	PART_OF_SPEECH_PARTICLE = 5;
+	PART_OF_SPEECH_SYMBOL = 6;
+	PART_OF_SPEECH_ADVERB = 7;
+	PART_OF_SPEECH_ADJECTIVE = 8;
+}
+
+enum PartOfSpeechSubclass1 {
+	PART_OF_SPEECH_SUBCLASS1_UNKNOWN = 0;
+	PART_OF_SPEECH_SUBCLASS1_PENDING = 110;
+	PART_OF_SPEECH_SUBCLASS1_PROPER_NOUN = 1;
+	PART_OF_SPEECH_SUBCLASS1_CASE_PARTICLE = 2;
+	PART_OF_SPEECH_SUBCLASS1_CHANGE_CONNECTION = 3;
+	PART_OF_SPEECH_SUBCLASS1_INDEPENDENCE = 4;
+	PART_OF_SPEECH_SUBCLASS1_SUFFIX = 5;
+	PART_OF_SPEECH_SUBCLASS1_OPEN_PARENTHESIS = 6;
+	PART_OF_SPEECH_SUBCLASS1_CLOSE_PARENTHESIS = 7;
+	PART_OF_SPEECH_SUBCLASS1_READING = 9;
+	PART_OF_SPEECH_SUBCLASS1_PARTICLE_CONNECTION = 10;
+	PART_OF_SPEECH_SUBCLASS1_PUNCTUATION = 11;
+	PART_OF_SPEECH_SUBCLASS1_INTEGRATION = 12;
+	PART_OF_SPEECH_SUBCLASS1_PARTICLE = 13;
+	PART_OF_SPEECH_SUBCLASS1_CONNECTION_PARTICLE = 14;
+	PART_OF_SPEECH_SUBCLASS1_INDEPENDENCE_2 = 15;
+	PART_OF_SPEECH_SUBCLASS1_PRONOUN = 16;
+}
+
+// A single token in Mecab
+message JapaneseMecabToken {
+	string surface = 1;
+	PartOfSpeech part_of_speech = 2;
+	string raw_part_of_speech = 3;
+	PartOfSpeechSubclass1 subclass1 = 4;
+	string raw_subclass1 = 5;
+	string subclass2 = 6;
+	string subclass3 = 7;
+	string inflection = 8;
+	string conjugation = 9;
+	string rootForm = 10;
+	string reading = 11;
+	string pronunciation = 12;
+}
+
+// Invoke mecab Japanese language tokenizer
+// /apis-v1/japanese/mecab-tokenize/太郎が次郎に本を渡した
+message JapaneseMecabTokenizeResponse {
+	ResponseType type = 1;
+	string japanese = 3;
+	string output = 4;
+	repeated JapaneseMecabToken tokens = 5;
+	string signature = 6;
+	ProcessResult process = 2;
+}
+
+// Invoke jacy Japanese language parser
+// /apis-v1/japanese/jacy-parse/太郎 が 次郎 に 本 を 渡し た
+message JapaneseJacyParseResponse {
+	ResponseType type = 1;
+	string japanese = 3;
+	string output = 4;
+	ProcessResult process = 2;
+}
+
+// Response when the URI path is not recognized
+message UnhandledReply {
+	ResponseType type = 1;
+	string path = 2;
+	string query = 3;
+}

@@ -1,0 +1,14 @@
+options:
+  env:
+  - SUBPROJECT_ID=tanaka-corpus
+  - SHORT_SHA=$SHORT_SHA
+  - BUILD_ID=$BUILD_ID
+  - PROJECT_ID=$PROJECT_ID
+steps:
+- name: 'gcr.io/cloud-builders/dotnet'
+  args: ['restore']
+- name: 'gcr.io/cloud-builders/dotnet'
+  args: ['publish', '-c', 'Release', '-o', 'out']
+- name: 'gcr.io/my-web-apis/upload-gs-builder'
+
+ 
