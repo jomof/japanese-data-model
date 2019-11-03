@@ -4,7 +4,7 @@ options:
   - BUILD_ID=$BUILD_ID
   - PROJECT_ID=$PROJECT_ID
   - PACKAGE_VERSION=1.0.2
-  - SUBPROJECT_ID=japanese-data-model-$PACKAGE_VERSION
+  - SUBPROJECT_ID=japanese-data-model
 steps:
 - name: 'gcr.io/cloud-builders/dotnet'
   args: ['build', '-p:Version=$PACKAGE_VERSION', '-c', 'Release', '-o', 'out']
