@@ -5,6 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Protobuf definition for Japanese language tokenizing and parsing</Description>
     <Authors>Jomo Fisher</Authors>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
