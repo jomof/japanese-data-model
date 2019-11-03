@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="JapaneseDataModel.proto" />
+    <ProtoBuf Remove="JapaneseDataModel.proto" />
   </ItemGroup>
 
   <ItemGroup>
