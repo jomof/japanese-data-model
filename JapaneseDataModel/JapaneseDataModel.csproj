@@ -2,10 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Protobuf definition for Japanese language tokenizing and parsing</Description>
+    <Authors>Jomo Fisher</Authors>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Model.proto" />
+    <None Remove="JapaneseDataModel.proto" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProtoBuf Include="Model.proto" />
+    <ProtoBuf Include="JapaneseDataModel.proto" />
   </ItemGroup>
 
 </Project>
