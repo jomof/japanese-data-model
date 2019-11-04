@@ -1,5 +1,12 @@
 ﻿syntax = "proto3";
 
+// A sentence translated between English and Japanese
+message Sentence {
+	string id = 1;
+	string english = 2;
+	string japanese = 3;
+}
+
 enum ResponseType {
 	UNHANDLED = 0;
 	JAPANESE_MECAB_TOKENIZE = 1;
