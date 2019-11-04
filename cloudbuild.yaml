@@ -10,4 +10,5 @@ steps:
 - name: 'gcr.io/my-web-apis/dotnet-build-builder'
 - name: 'gcr.io/my-web-apis/upload-gs-builder'
 - name: 'gcr.io/my-web-apis/nuget-publish-builder'
+  dir: /workspace/out
 
